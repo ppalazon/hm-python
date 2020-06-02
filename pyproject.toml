@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "hm-python"
+version = "0.1.0"
+description = "The hypermodern Python project"
+license = "MIT"
+authors = ["Pablo Palazon <pablo.palazon@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/ppalazon/hm-python"
+repository = "https://github.com/ppalazon/hm-python"
+keywords = ["hypermodern"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+click = "^7.1.2"
+requests = "^2.23.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.2"
+coverage = {extras = ["toml"], version = "^5.1"}
+pytest-cov = "^2.9.0"
+pytest-mock = "^3.1.0"
+black = "^19.10b0"
+flake8 = "^3.8.2"
+flake8-bandit = "^2.1.2"
+flake8-black = "^0.2.0"
+flake8-bugbear = "^20.1.4"
+flake8-import-order = "^0.18.1"
+safety = "^1.9.0"
+
+[tool.poetry.scripts]
+hm-python = "hm_python.console:main"
+
+[tool.coverage.paths]
+source = ["src", "*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+source = ["hm_python"]
+
+[tool.coverage.report]
+fail_under = 100
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
