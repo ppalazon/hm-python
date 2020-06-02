@@ -1,0 +1,30 @@
+rule infer
+  command = /data/workspace/science/python/hm-python/.nox/pytype/bin/python -m pytype.single --imports_info $imports --module-name $module -V 3.7 -o $out --no-report-errors --nofail --quick $in
+  description = infer $module
+rule check
+  command = /data/workspace/science/python/hm-python/.nox/pytype/bin/python -m pytype.single --disable import-error --imports_info $imports --module-name $module -V 3.7 -o $out --analyze-annotated --nofail --quick $in
+  description = check $module
+build /data/workspace/science/python/hm-python/.pytype/pyi/noxfile.pyi: check /data/workspace/science/python/hm-python/noxfile.py
+  imports = /data/workspace/science/python/hm-python/.pytype/imports/noxfile.imports
+  module = noxfile
+build /data/workspace/science/python/hm-python/.pytype/pyi/test/conftest.pyi: check /data/workspace/science/python/hm-python/test/conftest.py
+  imports = /data/workspace/science/python/hm-python/.pytype/imports/test.conftest.imports
+  module = test.conftest
+build /data/workspace/science/python/hm-python/.pytype/pyi/hm_python/wikipedia.pyi: check /data/workspace/science/python/hm-python/src/hm_python/wikipedia.py
+  imports = /data/workspace/science/python/hm-python/.pytype/imports/hm_python.wikipedia.imports
+  module = hm_python.wikipedia
+build /data/workspace/science/python/hm-python/.pytype/pyi/test/test_wikipedia.pyi: check /data/workspace/science/python/hm-python/test/test_wikipedia.py | /data/workspace/science/python/hm-python/.pytype/pyi/hm_python/wikipedia.pyi
+  imports = /data/workspace/science/python/hm-python/.pytype/imports/test.test_wikipedia.imports
+  module = test.test_wikipedia
+build /data/workspace/science/python/hm-python/.pytype/pyi/test/__init__.pyi: check /data/workspace/science/python/hm-python/test/__init__.py
+  imports = /data/workspace/science/python/hm-python/.pytype/imports/test.__init__.imports
+  module = test.__init__
+build /data/workspace/science/python/hm-python/.pytype/pyi/hm_python/__init__.pyi: check /data/workspace/science/python/hm-python/src/hm_python/__init__.py
+  imports = /data/workspace/science/python/hm-python/.pytype/imports/hm_python.__init__.imports
+  module = hm_python.__init__
+build /data/workspace/science/python/hm-python/.pytype/pyi/hm_python/console.pyi: check /data/workspace/science/python/hm-python/src/hm_python/console.py | /data/workspace/science/python/hm-python/.pytype/pyi/hm_python/__init__.pyi /data/workspace/science/python/hm-python/.pytype/pyi/hm_python/wikipedia.pyi
+  imports = /data/workspace/science/python/hm-python/.pytype/imports/hm_python.console.imports
+  module = hm_python.console
+build /data/workspace/science/python/hm-python/.pytype/pyi/test/test_console.pyi: check /data/workspace/science/python/hm-python/test/test_console.py | /data/workspace/science/python/hm-python/.pytype/pyi/hm_python/console.pyi
+  imports = /data/workspace/science/python/hm-python/.pytype/imports/test.test_console.imports
+  module = test.test_console
