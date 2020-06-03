@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hm-python"
-version = "0.1.0"
+version = "1.0.0"
 description = "The hypermodern Python project"
 license = "MIT"
 authors = ["Pablo Palazon <pablo.palazon@gmail.com>"]
@@ -15,6 +15,7 @@ click = "^7.1.2"
 requests = "^2.23.0"
 desert = "^2020.1.6"
 marshmallow = "^3.6.0"
+importlib_metadata = {version = "^1.6.0", python = "<3.8"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.2"
